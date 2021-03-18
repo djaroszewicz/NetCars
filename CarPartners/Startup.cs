@@ -39,7 +39,8 @@ namespace CarPartners
             services.AddDbContext<NetCarsContext>(builder =>
             {
                 //builder.UseMySql(Configuration.GetConnectionString("DefaultConnection"));
-                builder.UseMySql(Configuration.GetConnectionString("DefaultConnection"), new MySqlServerVersion(new Version(8, 0, 21)));
+                //builder.UseMySql(Configuration.GetConnectionString("DefaultConnection"), new MySqlServerVersion(new Version(8, 0, 21)));
+                builder.UseSqlite("CarPartners=NetCars.db");
             });
 
             services.AddIdentity<User, IdentityRole>(options =>
@@ -71,16 +72,12 @@ namespace CarPartners
             // Tu wstrzykiwanie zaleznosci
             services.AddScoped<IHomeService, HomeService>();
 
-
-
             services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
         }
-
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-
             var cultureInfo = new CultureInfo("pl-PL");
             CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
 
@@ -118,7 +115,6 @@ namespace CarPartners
                 //           name: "dashboardArea",
                 //           areaName: "dashboard",
                 //           pattern: "{area=dashboard}/{controller=Home}/{action=index}/{id?}");
-
             });
         }
     }
