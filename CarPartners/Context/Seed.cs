@@ -1,11 +1,11 @@
-﻿using CarPartners.Areas.Home.Models.Db.Account;
+﻿using NetCars.Areas.Home.Models.Db.Account;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CarPartners.Context
+namespace NetCars.Context
 {
     public class Seed
     {

@@ -1,4 +1,4 @@
-﻿using CarPartners.Areas.Home.Models.Db.Account;
+﻿using NetCars.Areas.Home.Models.Db.Account;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using NetCars.Areas.Home.Models.Db.Car;
@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CarPartners.Context
+namespace NetCars.Context
 {
     public class NetCarsContext : IdentityDbContext<User>
     {

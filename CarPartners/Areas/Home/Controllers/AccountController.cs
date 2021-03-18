@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CarPartners.Areas.Home.Models.Db.Account;
-using CarPartners.Areas.Home.Models.View.Account;
+using NetCars.Areas.Home.Models.Db.Account;
+using NetCars.Areas.Home.Models.View.Account;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CarPartners.Areas.Home.Controllers
+namespace NetCars.Areas.Home.Controllers
 {
     [Area("home")]
     [Route("home/{controller}/{action=login}/{Id?}")]

@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace CarPartners.Migrations
+namespace NetCars.Migrations
 {
-    public partial class StartProjectLoginAndRegister : Migration
+    public partial class Carv1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -45,6 +45,27 @@ namespace CarPartners.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Cars",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    HorsePower = table.Column<int>(type: "int", nullable: false),
+                    Color = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    NumberOfDoors = table.Column<int>(type: "int", nullable: false),
+                    Seats = table.Column<int>(type: "int", nullable: false),
+                    Mark = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    Capacity = table.Column<double>(type: "double", nullable: false),
+                    Cost = table.Column<double>(type: "double", nullable: false),
+                    Mileage = table.Column<double>(type: "double", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cars", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -207,6 +228,9 @@ namespace CarPartners.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Cars");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

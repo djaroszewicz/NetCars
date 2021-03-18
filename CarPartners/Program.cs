@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CarPartners.Areas.Home.Models.Db.Account;
-using CarPartners.Context;
+using NetCars.Areas.Home.Models.Db.Account;
+using NetCars.Context;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -13,7 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace CarPartners
+namespace NetCars
 {
     public class Program
     {

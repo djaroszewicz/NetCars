@@ -1,0 +1,97 @@
+﻿@model CarView
+
+@{
+    ViewData["Title"] = "Dodawanie samochodów";
+
+    ViewData["Page"] = "CarModel";
+    ViewData["Group"] = "Car";
+
+    Layout = "~/Areas/Home/Views/Shared/_Layout.cshtml";
+
+}
+<div class="page-inner">
+
+    <div class="page-header">
+        <h4 class="page-title">Dodawnie samochodu</h4>
+    </div>
+
+    <div class="card">
+        @using (Html.BeginForm("Add", "Car", FormMethod.Post))
+        {
+            <div class="card-header">
+                <div class="d-flex align-items-center">
+                    <h4 class="card-title">Dodaj samochód</h4>
+                </div>
+            </div>
+            <div class="card-body">
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+                <div class="input-icon mb-3">
+                    <span class="input-icon-addon">
+                        <i class="fas fa-pen-alt"></i>
+                    </span>
+                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @placeholder = "Nazwa" })
+                </div>
+                <div class="input-icon mb-3">
+                    <span class="input-icon-addon">
+                        <i class="fas fa-pen-alt"></i>
+                    </span>
+                    @Html.TextBoxFor(x => x.HorsePower, new { @class = "form-control", @placeholder = "Ilość koni mechanicznych" })
+                </div>
+                <div class="input-icon mb-3">
+                    <span class="input-icon-addon">
+                        <i class="fas fa-pen-alt"></i>
+                    </span>
+                    @Html.TextBoxFor(x => x.Color, new { @class = "form-control", @placeholder = "Kolor samochodu" })
+                </div>
+                <div class="input-icon mb-3">
+                    <span class="input-icon-addon">
+                        <i class="fas fa-pen-alt"></i>
+                    </span>
+                    @Html.TextBoxFor(x => x.NumberOfDoors, new { @class = "form-control", @placeholder = "Liczba drzwi" })
+                </div>
+                <div class="input-icon mb-3">
+                    <span class="input-icon-addon">
+                        <i class="fas fa-pen-alt"></i>
+                    </span>
+                    @Html.TextBoxFor(x => x.Seats, new { @class = "form-control", @placeholder = "Ilość siedzeń" })
+                </div>
+                <div class="input-icon mb-3">
+                    <span class="input-icon-addon">
+                        <i class="fas fa-pen-alt"></i>
+                    </span>
+                    @Html.TextBoxFor(x => x.Mark, new { @class = "form-control", @placeholder = "Marka pojazdu" })
+                </div>
+                <div class="input-icon mb-3">
+                    <span class="input-icon-addon">
+                        <i class="fas fa-pen-alt"></i>
+                    </span>
+                    @Html.TextBoxFor(x => x.Capacity, new { @class = "form-control", @placeholder = "Pojemność pojazdu" })
+                </div>
+                <div class="input-icon mb-3">
+                    <span class="input-icon-addon">
+                        <i class="fas fa-pen-alt"></i>
+                    </span>
+                    @Html.TextBoxFor(x => x.Cost, new { @class = "form-control", @placeholder = "Cena pojazdu" })
+                </div>
+                <div class="input-icon mb-3">
+                    <span class="input-icon-addon">
+                        <i class="fas fa-pen-alt"></i>
+                    </span>
+                    @Html.TextBoxFor(x => x.Mileage, new { @class = "form-control", @placeholder = "Przebieg pojazdu" })
+                </div>
+
+            </div>
+
+
+            <div class="row justify-content-center">
+                <button class="btn btn-primary mb-3" type="submit">
+                    <span class="btn-label">
+                        <i class="fa fa-plus"></i>
+                    </span>
+                    Dodaj samochód
+                </button>
+            </div>
+        }
+    </div>
+</div>
