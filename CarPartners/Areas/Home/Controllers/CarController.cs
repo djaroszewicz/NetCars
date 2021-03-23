@@ -14,7 +14,7 @@ namespace CarPartners.Areas.Home.Controllers
     {
         private readonly ICarService _carService;
 
-        public CarController (ICarService carService)
+        public CarController(ICarService carService)
         {
             _carService = carService;
         }

@@ -36,12 +36,22 @@ namespace CarPartners
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<NetCarsContext>(builder =>
+            var dbType = Configuration["dbType"];
+            if (dbType == "Sqlite")
             {
-                //builder.UseMySql(Configuration.GetConnectionString("DefaultConnection"));
-                //builder.UseMySql(Configuration.GetConnectionString("DefaultConnection"), new MySqlServerVersion(new Version(8, 0, 21)));
-                builder.UseSqlite("CarPartners=NetCars.db");
-            });
+                services.AddDbContext<NetCarsContext>(builder =>
+                {
+                    builder.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
+                });
+            }
+            else
+            {
+                services.AddDbContext<NetCarsContext>(builder =>
+                {
+                    //builder.UseMySql(Configuration.GetConnectionString("DefaultConnection"));
+                    builder.UseMySql(Configuration.GetConnectionString("DefaultConnection"), new MySqlServerVersion(new Version(8, 0, 21)));
+                });
+            }
 
             services.AddIdentity<User, IdentityRole>(options =>
             {
