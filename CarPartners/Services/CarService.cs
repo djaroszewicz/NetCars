@@ -1,4 +1,4 @@
-﻿using CarPartners.Context;
+﻿using NetCars.Context;
 using Microsoft.EntityFrameworkCore;
 using NetCars.Areas.Home.Models.Db.Car;
 using NetCars.Services.Interfaces;

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CarPartners.Areas.Home.Models.View.Account
+namespace NetCars.Areas.Home.Models.View.Account
 {
     public class UserView
     {

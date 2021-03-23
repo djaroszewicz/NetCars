@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CarPartners.Infrastructure.Settings
+namespace NetCars.Infrastructure.Settings
 {
     public class CloudinarySettings
     {

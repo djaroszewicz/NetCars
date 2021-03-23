@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using CarPartners.Models;
-using CarPartners.Services.Interfaces;
+using NetCars.Models;
+using NetCars.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CarPartners.Areas.Home.Controllers
+namespace NetCars.Areas.Home.Controllers
 {
     [Area("home")]
     public class HomeController : Controller

@@ -1,13 +1,13 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using CarPartners.Areas.Home.Models.Db.Account;
-using CarPartners.Context;
-using CarPartners.Infrastructure.Settings;
-using CarPartners.Services;
-using CarPartners.Services.Interfaces;
+using NetCars.Areas.Home.Models.Db.Account;
+using NetCars.Context;
+using NetCars.Infrastructure.Settings;
+using NetCars.Services;
+using NetCars.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -19,7 +19,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace CarPartners
+namespace NetCars
 {
     public class Startup
     {
@@ -64,7 +64,7 @@ namespace CarPartners
 
             services.PostConfigure<CookieAuthenticationOptions>(IdentityConstants.ApplicationScheme, options =>
             {
-                // scie¿ka do logowania
+                // scieï¿½ka do logowania
                 options.LoginPath = "/home/account/login";
             });
 
@@ -81,6 +81,8 @@ namespace CarPartners
 
             // Tu wstrzykiwanie zaleznosci
             services.AddScoped<IHomeService, HomeService>();
+
+
 
             services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
         }
@@ -119,7 +121,7 @@ namespace CarPartners
                            areaName: "home",
                            pattern: "{controller=Home}/{action=index}/{id?}");
 
-                //Tu jeœli bêdziemy dodawaæ jakieœ inne obszary:
+                //Tu jeï¿½li bï¿½dziemy dodawaï¿½ jakieï¿½ inne obszary:
 
                 //endpoints.MapAreaControllerRoute(
                 //           name: "dashboardArea",
