@@ -81,6 +81,7 @@ namespace NetCars
 
             // Tu wstrzykiwanie zaleznosci
             services.AddScoped<IHomeService, HomeService>();
+            services.AddScoped<ICarService, CarService>();
 
 
 
