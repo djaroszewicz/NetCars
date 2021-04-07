@@ -1,0 +1,90 @@
+﻿@model EditRoleView
+
+@{
+    ViewData["Title"] = "Edytowanie roli";
+
+    ViewData["Page"] = "RoleEdit";
+    ViewData["Group"] = "Role";
+
+}
+
+
+<div class="page-inner" style="margin-top:15px;">
+
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="d-flex align-items-center">
+                    <h4 class="card-title">Edytuj rolę</h4>
+                </div>
+            </div>
+            @if (User.Identity.Name == "admin")
+            {
+                <div class="card-body">
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <div class="login" style="background-color: white;">
+
+                                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+                                @using (Html.BeginForm("Edit", "Role", new { area = "home" }, FormMethod.Post, true, new { @class = "login-form" }))
+                                {
+                                    <div class="form-group">
+                                        <label for="rolename" class="placeholder"><b>Id roli</b></label>
+                                        <input type="text" class="form-control with-out-grey" value="@Model.Id" readonly="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="rolename" class="placeholder"><b>Nazwa roli</b></label>
+                                        @Html.TextBoxFor(x => x.RoleName, new { @class = "form-control" })
+                                    </div>
+                                    <div class="form-group form-action-d-flex mb-3">
+                                        <button type="submit" class="btn btn-warning col-md-5 float-left mt-3 mt-sm-0 fw-bold">Edytuj rolę</button>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                    <div class="card" style="margin-top:15px;">
+                        <div class="card-header">
+                            <h3>Użytkownicy w tej roli</h3>
+                        </div>
+
+                        <div class="card-body">
+                            @if (Model.Users != null)
+                            {
+                                foreach (var user in Model.Users)
+                                {
+                                    <h5 class="card-title">@user</h5>
+                                }
+                            }
+                            else
+                            {
+                                <h5 class="card-title">Brak użytkowników w tej roli</h5>
+                            }
+                        </div>
+                        <div class="card-footer">
+                            <a href="@Url.Action("EditUser","Role", new {roleId = Model.Id})" class="btn btn-primary" style="width:auto">Dodaj lub usuń rolę użytkownika</a>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="card-body">
+                    <div class="row">
+                        <div style="margin-top:10px;">
+                            <label>Role moze edytowac jedynie administrator</label>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
