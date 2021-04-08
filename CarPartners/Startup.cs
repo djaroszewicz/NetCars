@@ -55,11 +55,11 @@ namespace NetCars
 
             services.AddIdentity<User, IdentityRole>(options =>
             {
-                options.Password.RequireDigit = false;
-                options.Password.RequiredLength = 2;
-                options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequireUppercase = false;
-                options.Password.RequireLowercase = false;
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 6;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireLowercase = true;
             }).AddEntityFrameworkStores<NetCarsContext>();
 
             services.PostConfigure<CookieAuthenticationOptions>(IdentityConstants.ApplicationScheme, options =>
@@ -82,8 +82,6 @@ namespace NetCars
             // Tu wstrzykiwanie zaleznosci
             services.AddScoped<IHomeService, HomeService>();
             services.AddScoped<ICarService, CarService>();
-
-
 
             services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
         }
