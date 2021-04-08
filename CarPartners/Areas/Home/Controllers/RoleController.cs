@@ -51,7 +51,6 @@ namespace NetCars.Areas.Home.Controllers
                 }
             }
 
-
             return View();
         }
 
@@ -94,7 +93,6 @@ namespace NetCars.Areas.Home.Controllers
             }
 
             return View(model);
-
         }
 
         [HttpPost]
@@ -123,7 +121,6 @@ namespace NetCars.Areas.Home.Controllers
             }
 
             return View(view);
-
         }
 
         [HttpGet]
@@ -146,7 +143,6 @@ namespace NetCars.Areas.Home.Controllers
                 {
                     UserId = user.Id,
                     UserName = user.UserName
-
                 };
 
                 if (await _userManager.IsInRoleAsync(user, role.Name))
@@ -161,7 +157,6 @@ namespace NetCars.Areas.Home.Controllers
             }
 
             return View(model);
-
         }
 
         [HttpPost]

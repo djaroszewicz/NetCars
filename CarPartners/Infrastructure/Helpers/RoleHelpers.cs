@@ -11,11 +11,9 @@ namespace NetCars.Infrastructure.Helpers
     {
         public static RoleModel ConvertToModel(RoleView result)
         {
-
             var roleModel = new RoleModel
             {
                 RoleName = result.RoleName
-
             };
 
             return roleModel;
@@ -30,7 +28,6 @@ namespace NetCars.Infrastructure.Helpers
 
             return roleView;
         }
-
 
         public static RoleModel MergeViewWithModel(RoleModel model, RoleView view)
         {
