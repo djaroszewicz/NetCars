@@ -13,5 +13,7 @@ namespace NetCars.Services.Interfaces
         Task<List<CarModel>> GetAll();
         Task<bool> Update(CarModel car);
         Task<bool> Delete(int id);
+        Task<List<OffertsModel>> OffertsList();
+        Task<bool> UpdateOffer(List<OffertsModel> offerts);
     }
 }

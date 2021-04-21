@@ -16,6 +16,7 @@ namespace NetCars.Context
         //Tutaj dodajemy DbSety
 
         public DbSet<CarModel> Cars { get; set; }
+        public DbSet<OffertsModel> Offerts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

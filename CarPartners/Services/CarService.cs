@@ -54,5 +54,21 @@ namespace NetCars.Services
             _context.Cars.Update(car);
             return await _context.SaveChangesAsync() > 0;
         }
+
+        public async Task<List<OffertsModel>> OffertsList()
+        {
+            return await _context.Offerts
+                .Include(c => c.Car).ToListAsync();
+        }
+
+        public async Task<bool> UpdateOffer(List<OffertsModel> offerts)
+        {
+            foreach(var offer in offerts)
+            {
+                _context.Offerts.Update(offer);
+            }
+
+            return await _context.SaveChangesAsync() > 0;
+        }
     }
 }

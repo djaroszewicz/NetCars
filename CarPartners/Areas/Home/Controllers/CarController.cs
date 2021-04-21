@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using NetCars.Areas.Home.Models.Db.Car;
 using NetCars.Areas.Home.Models.View.Car;
 using NetCars.Infrastructure.Helpers;
 using NetCars.Services.Interfaces;
@@ -37,6 +38,49 @@ namespace NetCars.Areas.Home.Controllers
         [HttpGet]
         public async Task<IActionResult> Add()
         {
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Offerts()
+        {
+            var offerts = await _carService.OffertsList();
+            var carList = await _carService.GetAll();
+
+            if(offerts.Count == 0)
+            {
+                Random randomNumber = new Random();
+                int randomCar = randomNumber.Next(carList.Count);
+                var carOffer = await _carService.Get(randomCar);
+
+                var newOffer = new OffertsModel
+                {
+                    Car = carOffer,
+                    OfferDate = DateTime.Now
+                };
+
+                List<OffertsModel> offerCarList = new List<OffertsModel>();
+                offerCarList.Add(newOffer);
+
+                await _carService.UpdateOffer(offerCarList);
+            }
+
+
+            foreach(var newOffer in offerts)
+            {
+                if((newOffer.OfferDate.AddSeconds(5)) < DateTime.Now)
+                {
+                    Random randomNumber = new Random();
+                    int randomCar = randomNumber.Next(carList.Count);
+                    var carOffer = await _carService.Get(randomCar);
+
+                    newOffer.OfferDate = DateTime.Now;
+                    newOffer.Car = carOffer;
+                }
+            }
+
+            await _carService.UpdateOffer(offerts);
+
             return View();
         }
 

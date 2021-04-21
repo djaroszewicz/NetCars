@@ -10,35 +10,74 @@
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">Strona Główna</a></li>
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="list.html">Lista pojazdów</a></li>
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">About</a></li>
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">Umów się</a></li>
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="@Url.Action("Logout","Account", new { Area = "home" })">Umów się</a></li>
                 @*<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#login">Zaloguj się</a></li>*@
+
                 @if (!User.Identity.IsAuthenticated)
                 {
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle-split" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Konto
-                    <i class="fas fa-user fa-lg"></i>
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="right: 0; left: auto;">
-                    <a class="dropdown-item" href="@Url.Action("Login","Account", new { Area = "home" })">Logowanie</a>
+                    <li class="nav-item mx-0 mx-lg-1 dropdown">
+                        <a class="nav-link dropdown-toggle-split py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Konto
+                            <i class="fas fa-user fa-lg"></i>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="right: 0; left: auto;">
+                            <a class="dropdown-item" href="@Url.Action("Login","Account", new { Area = "home" })">Logowanie</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="@Url.Action("Register","Account", new { Area = "home" })">Rejestracja</a>
+                        </div>
+                    </li>
+                }
+                else
+                {
+
+                    <li class="nav-item mx-0 mx-lg-1 dropdown">
+                        <a class="nav-link dropdown-toggle-split py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Konto
+                            <i class="fas fa-user fa-lg"></i>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="right: 0; left: auto;">
+                            <a class="dropdown-item">@User.Identity.Name</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="@Url.Action("Logout","Account", new { Area = "home" })">Wyloguj</a>
+                        </div>
+                    </li>
+                }
+
+
+
+
+                @*<li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle-split" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Konto
+                <i class="fas fa-user fa-lg"></i>
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="right: 0; left: auto;">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a class="dropdown-item" href="@Url.Action("Login", "Account", new { Area = "home" })">Logowanie</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="@Url.Action("Register","Account", new { Area = "home" })">Rejestracja</a>
+                    <a class="dropdown-item" href="@Url.Action("Register", "Account", new { Area = "home" })">Rejestracja</a>
+
+
+
+                    <a class="dropdown-item" href="@Url.Action("Logout", "Account", new { Area = "Home" })">Wyloguj</a>
                 </div>
-            </li>
-            }
-                        else
-                        {
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle-split" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Konto
-                    <i class="fas fa-user fa-lg"></i>
-                </a>
+
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="right: 0; left: auto;">
-                    @*<a class="dropdown-item" href="#">Moje konto</a>
-            <div class="dropdown-divider"></div>*@
-                    <a class="dropdown-item" href="@Url.Action("Logout","Account", new { Area = "Home" })">Wyloguj</a>
+
                 </div>
-            </li>}
+
+        </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle-split" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Konto
+                        <i class="fas fa-user fa-lg"></i>
+                    </a>
+
+                </li>*@
+
             </ul>
         </div>
     </div>

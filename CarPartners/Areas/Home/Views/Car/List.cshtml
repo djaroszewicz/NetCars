@@ -1,4 +1,59 @@
-﻿@page
-@model NetCars.Areas.Home.Views.Car.ListModel
+﻿@model List<CarModel>
+
 @{
+    ViewData["Title"] = "Lista samochodów";
+
+    Layout = "~/Areas/Home/Views/Shared/_Layout.cshtml";
 }
+
+    <section class="page-section portfolio" id="portfolio">
+        <div class="container">
+
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Lista samochodów</h2>
+
+            <div class="divider-custom">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                <div class="divider-custom-line"></div>
+            </div>
+            <div class="row justify-content-center">
+
+
+
+
+                @if (Model.Count != 0)
+                {
+                    @foreach (var carModel in Model)
+                    {
+
+                        <div class="col-md-6 col-lg-4 mb-5">
+                            <div class="card h-100" data-toggle="modal" data-target="#portfolioModal1">
+                                <a href="#"><img class="card-img-top" src="https://bi.im-g.pl/im/6a/1d/17/z24236394IH,Audi-e-tron-GT.jpg" alt=""></a>
+                                <div class="card-body">
+                                    <h4 class="card-title">
+                                        <a href="#">@carModel.Name</a>
+                                    </h4>
+                                    <h5>@carModel.Cost PLN</h5>
+                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="col-md-10">
+                        <h4>Brak samochodów w bazie danych!</h4>
+                    </div>
+                    <div class="col-md-10">
+                        <h5>Zapraszamy ponownie wkrótce!</h5>
+                    </div>
+
+                }
+            </div>
+
+        </div>
+        </section>
