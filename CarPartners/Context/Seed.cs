@@ -27,12 +27,18 @@ namespace NetCars.Context
                         Id = "u",
                         UserName = "user",
                         Email = "user@user.pl",
+                    },
+                     new User
+                    {
+                        Id = "u2",
+                        UserName = "user2",
+                        Email = "user2@user.pl",
                     }
                 };
 
                 foreach (var user in users)
                 {
-                    await userManager.CreateAsync(user, "haslo");
+                    await userManager.CreateAsync(user, "!Haslo123");
                 }
             }
         }

@@ -60,7 +60,7 @@ namespace NetCars
                 options.Password.RequireNonAlphanumeric = true;
                 options.Password.RequireUppercase = true;
                 options.Password.RequireLowercase = true;
-            }).AddEntityFrameworkStores<NetCarsContext>();
+            }).AddEntityFrameworkStores<NetCarsContext>().AddDefaultTokenProviders();
 
             services.PostConfigure<CookieAuthenticationOptions>(IdentityConstants.ApplicationScheme, options =>
             {

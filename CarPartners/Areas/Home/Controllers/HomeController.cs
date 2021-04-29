@@ -24,6 +24,13 @@ namespace NetCars.Areas.Home.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult Contact()
+        {
+            return View();
+        }
+
+
         public IActionResult Privacy()
         {
             return View();
