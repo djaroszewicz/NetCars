@@ -21,7 +21,8 @@ namespace NetCars.Infrastructure.Helpers
                 Mark = result.Mark,
                 Capacity = result.Capacity,
                 Cost = result.Cost,
-                Mileage = result.Mileage
+                Mileage = result.Mileage           
+                
 
             };
 
@@ -43,6 +44,15 @@ namespace NetCars.Infrastructure.Helpers
                 Cost = result.Cost,
                 Mileage = result.Mileage
             };
+
+            if (result.CarImage == null)
+            {
+                carView.CarImageUrl = "https://res.cloudinary.com/netcars/image/upload/v1620331855/img-placeholder_ndvgxj.png";
+            }
+            else
+            {
+                carView.CarImageUrl = result.CarImage.Url;
+            }
 
             return carView;
         }

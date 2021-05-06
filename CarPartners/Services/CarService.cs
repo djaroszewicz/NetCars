@@ -41,12 +41,16 @@ namespace NetCars.Services
 
         public async Task<CarModel> Get(int id)
         {
-            return await _context.Cars.SingleOrDefaultAsync(a => a.Id == id);
+            return await _context.Cars
+                .Include(i => i.CarImage)
+                .SingleOrDefaultAsync(a => a.Id == id);
         }
 
         public async Task<List<CarModel>> GetAll()
         {
-            return await _context.Cars.ToListAsync();
+            return await _context.Cars
+                .Include(i => i.CarImage)
+                .ToListAsync();
         }
 
         public async Task<bool> Update(CarModel car)

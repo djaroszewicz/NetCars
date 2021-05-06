@@ -19,5 +19,6 @@ namespace NetCars.Areas.Home.Models.Db.Car
         public double Capacity { get; set; }
         public double Cost { get; set; }
         public double Mileage { get; set; }
+        public CarImageModel CarImage { get; set; }
     }
 }

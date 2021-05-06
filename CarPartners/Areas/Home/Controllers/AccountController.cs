@@ -29,6 +29,13 @@ namespace NetCars.Areas.Home.Controllers
         }
 
         [HttpGet]
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+
+        [HttpGet]
         public IActionResult ResetPassword()
         {
             return View();
