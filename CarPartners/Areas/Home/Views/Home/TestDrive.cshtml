@@ -1,0 +1,54 @@
+﻿@page
+@model NetCars.Areas.Home.Views.Home.TestDriveModel
+@{
+}
+
+<section class="page-section portfolio" id="portfolio">
+    <div class="container">
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Umów się na jazdę testową</h2>
+
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <div class="page-inner" style="margin-top:15px;">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="d-flex align-items-center">
+                            <h4 class="card-title">Wypełnij dane</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row align-content-center">
+                            <div class="col-md-7">
+                                <div class="login" style="background-color: white;">
+                                    <div class="form-group">
+                                        <label style="margin-right=10px" for="username" class="placeholder"><b>Wybierz auto</b></label>
+                                        <input />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password" class="placeholder"><b>Wybierz termin</b></label>
+                                        <input type="date" id="start" name="trip-start" />
+                                    </div>
+                                    <div>
+                                        <label><b>Numer telefonu</b></label>
+                                        <input placeholder="Wpisz numer" />
+                                    </div>
+                                    <div>
+                                        <label><b>Uwagi</b></label>
+                                        <textarea style="height=50px" class="container-fluid"  placeholder="Uwagi do jazdy testowej" ></textarea>
+                                    </div>
+                                    <div class="form-group form-action-d-flex mb-3">
+                                        <button type="submit" class="btn btn-secondary col-md-5 mt-3 mt-sm-0 fw-bold">Wyślij zgłoszenie</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
