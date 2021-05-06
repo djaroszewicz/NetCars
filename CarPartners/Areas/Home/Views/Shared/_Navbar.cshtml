@@ -10,7 +10,7 @@
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">Strona Główna</a></li>
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="list.html">Lista pojazdów</a></li>
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="@Url.Action("AboutUs","home", new { Area = "home" })">O nas</a></li>
-                @if (!User.Identity.IsAuthenticated)
+                @if (User.Identity.IsAuthenticated)
                 {
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="@Url.Action("TestDrive","home", new { Area = "home" })">Jazda testowa</a></li>
                 }
