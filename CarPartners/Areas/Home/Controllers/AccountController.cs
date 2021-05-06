@@ -68,6 +68,26 @@ namespace NetCars.Areas.Home.Controllers
         }
 
         [HttpPost]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordView model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByEmailAsync(model.Email);
+                if (user != null && await _userManager.IsEmailConfirmedAsync(user))
+                {
+                    var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+                    var passwordResetLink = Url.Action("ResetPassword", "Account",
+                        new { email = model.Email, token = token }, Request.Scheme);
+
+                    return View(model);
+                }
+                return View(model);
+            }
+            return View(model);
+        }
+
+        [HttpPost]
         public async Task<IActionResult> Register(RegisterView result)
         {
             if (ModelState.IsValid)
