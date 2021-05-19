@@ -24,6 +24,12 @@ namespace NetCars.Areas.Home.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult Contact()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
@@ -31,6 +37,12 @@ namespace NetCars.Areas.Home.Controllers
 
         [HttpGet]
         public IActionResult AboutUs()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult TestDrive()
         {
             return View();
         }

@@ -28,6 +28,65 @@ namespace NetCars.Areas.Home.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+
+        [HttpGet]
+        public IActionResult ResetPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(ResetPasswordView result)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.GetUserAsync(User);
+                if(user != null)
+                {
+                    string resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
+                    var resetResult = await _userManager.ResetPasswordAsync(user, resetToken, result.Password);
+                    if(resetResult.Succeeded)
+                    {
+                        return RedirectToAction("Index", "Home", new { Area = "Home" });
+                    }
+                    foreach (var error in resetResult.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
+                    }
+                    return View(result);
+                }
+                return RedirectToAction("Index", "Home", new { Area = "Home" });
+            }
+
+            return View(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordView model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByEmailAsync(model.Email);
+                if (user != null && await _userManager.IsEmailConfirmedAsync(user))
+                {
+                    var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+                    var passwordResetLink = Url.Action("ResetPassword", "Account",
+                        new { email = model.Email, token = token }, Request.Scheme);
+
+                    return View(model);
+                }
+                return View(model);
+            }
+            return View(model);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Register(RegisterView result)
         {

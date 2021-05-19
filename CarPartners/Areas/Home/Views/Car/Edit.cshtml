@@ -1,9 +1,9 @@
 ﻿@model CarView
 
 @{
-    ViewData["Title"] = "Dodawanie samochodów";
+    ViewData["Title"] = "Edytowanie samochodu";
 
-    ViewData["Page"] = "CarModel";
+    ViewData["Page"] = "CarEdit";
     ViewData["Group"] = "Car";
 
     Layout = "~/Areas/Home/Views/Shared/_Layout.cshtml";
@@ -12,11 +12,11 @@
 <div class="page-inner">
 
     <div class="page-header">
-        <h4 class="page-title">Dodawnie samochodu</h4>
+        <h4 class="page-title">Edycja samochodu</h4>
     </div>
 
     <div class="card">
-        @using (Html.BeginForm("Add", "Car", new { area = "home" }, FormMethod.Post, true, new { @enctype = "multipart/form-data" }))
+        @using (Html.BeginForm("Edit", "Car", new { area = "home" }, FormMethod.Post, true, new { @enctype = "multipart/form-data" }))
 
         {
             <div class="card-header">
@@ -114,7 +114,7 @@
                     <span class="btn-label">
                         <i class="fa fa-plus"></i>
                     </span>
-                    Dodaj samochód
+                    Edytuj samochód
                 </button>
             </div>
         }

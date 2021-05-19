@@ -60,7 +60,7 @@ namespace NetCars
                 options.Password.RequireNonAlphanumeric = true;
                 options.Password.RequireUppercase = true;
                 options.Password.RequireLowercase = true;
-            }).AddEntityFrameworkStores<NetCarsContext>();
+            }).AddEntityFrameworkStores<NetCarsContext>().AddDefaultTokenProviders();
 
             services.PostConfigure<CookieAuthenticationOptions>(IdentityConstants.ApplicationScheme, options =>
             {
@@ -82,6 +82,7 @@ namespace NetCars
             // Tu wstrzykiwanie zaleznosci
             services.AddScoped<IHomeService, HomeService>();
             services.AddScoped<ICarService, CarService>();
+            services.AddScoped<ICloudinaryService, CloudinaryService>();
 
             services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
 

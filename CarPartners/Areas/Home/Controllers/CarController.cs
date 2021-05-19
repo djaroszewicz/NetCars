@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NetCars.Areas.Home.Models.Db.Car;
 using NetCars.Areas.Home.Models.View.Car;
@@ -15,10 +16,12 @@ namespace NetCars.Areas.Home.Controllers
     public class CarController : Controller
     {
         private readonly ICarService _carService;
+        private readonly ICloudinaryService _cloudinaryService;
 
-        public CarController(ICarService carService)
+        public CarController(ICarService carService, ICloudinaryService cloudinaryService)
         {
             _carService = carService;
+            _cloudinaryService = cloudinaryService;
         }
 
         [HttpGet]
@@ -104,6 +107,7 @@ namespace NetCars.Areas.Home.Controllers
 
             var resultModel = CarHelpers.ConvertToModel(result);
             await _carService.Create(resultModel);
+            await _cloudinaryService.AddCarImage(result.CarFileImg, resultModel.Id);
 
             return RedirectToAction("List");
         }
@@ -120,6 +124,16 @@ namespace NetCars.Areas.Home.Controllers
             var updateModel = CarHelpers.MergeViewWithModel(model, result);
 
             await _carService.Update(updateModel);
+
+            if(result.CarFileImg != null)
+            {
+                if (model.CarImage != null)
+                {
+                    _cloudinaryService.DeleteCarImage(model.CarImage.Id);
+                }
+
+                await _cloudinaryService.AddCarImage(result.CarFileImg, model.Id);
+            }
 
             return RedirectToAction("List");
         }

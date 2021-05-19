@@ -28,7 +28,14 @@
 
                         <div class="col-md-6 col-lg-4 mb-5">
                             <div class="card h-100" data-toggle="modal" data-target="#portfolioModal1">
-                                <a href="#"><img class="card-img-top" src="https://bi.im-g.pl/im/6a/1d/17/z24236394IH,Audi-e-tron-GT.jpg" alt=""></a>
+                                @if (carModel.CarImage != null)
+                                {
+                                    <a href="#"><img class="card-img-top" src="@carModel.CarImage.Url" alt=""></a>
+                                }
+                                else
+                                {
+                                    <a href="#"><img class="card-img-top" src="https://res.cloudinary.com/netcars/image/upload/v1620331855/img-placeholder_ndvgxj.png" alt=""></a>
+                                }
                                 <div class="card-body">
                                     <h4 class="card-title">
                                         <a href="#">@carModel.Name</a>
