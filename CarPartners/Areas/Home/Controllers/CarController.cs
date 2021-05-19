@@ -25,6 +25,9 @@ namespace NetCars.Areas.Home.Controllers
         public async Task<IActionResult> List()
         {
             var cars = await _carService.GetAll();
+            List<CarModel> carModelListSortByCost = new List<CarModel>();
+            carModelListSortByCost = (List<CarModel>)cars.OrderByDescending(c => c.Cost);
+
             return View(cars);
         }
 
@@ -47,7 +50,7 @@ namespace NetCars.Areas.Home.Controllers
             var offerts = await _carService.OffertsList();
             var carList = await _carService.GetAll();
 
-            if(offerts.Count == 0)
+            if (offerts.Count == 0)
             {
                 Random randomNumber = new Random();
                 int randomCar = randomNumber.Next(carList.Count);
@@ -65,10 +68,9 @@ namespace NetCars.Areas.Home.Controllers
                 await _carService.UpdateOffer(offerCarList);
             }
 
-
-            foreach(var newOffer in offerts)
+            foreach (var newOffer in offerts)
             {
-                if((newOffer.OfferDate.AddSeconds(5)) < DateTime.Now)
+                if ((newOffer.OfferDate.AddSeconds(5)) < DateTime.Now)
                 {
                     Random randomNumber = new Random();
                     int randomCar = randomNumber.Next(carList.Count);
@@ -95,7 +97,7 @@ namespace NetCars.Areas.Home.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(CarView result)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View(result);
             }
@@ -109,11 +111,11 @@ namespace NetCars.Areas.Home.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(CarView result)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View(result);
             }
-            
+
             var model = await _carService.Get(result.Id);
             var updateModel = CarHelpers.MergeViewWithModel(model, result);
 
