@@ -126,7 +126,7 @@ namespace NetCars
                            areaName: "home",
                            pattern: "{controller=Home}/{action=index}/{id?}");
 
-                //Tu je�li b�dziemy dodawa� jakie� inne obszary:
+                //Tu jesli bedziemy dodawac jakies inne obszary:
 
                 //endpoints.MapAreaControllerRoute(
                 //           name: "dashboardArea",

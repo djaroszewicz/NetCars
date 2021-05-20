@@ -1,14 +1,16 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace NetCars.Areas.Home.Models.Db.Account
+namespace NetCars.Areas.Home.Models.View.Account
 {
-    public class User : IdentityUser
+    public class AccountEditView
     {
+        public int PhoneNumber { get; set; }
+
         public string Name { get; set; }
         public string Forname { get; set; }
+
     }
 }

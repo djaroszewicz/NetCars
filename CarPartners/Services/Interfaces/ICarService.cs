@@ -11,8 +11,11 @@ namespace NetCars.Services.Interfaces
         Task<bool> Create(CarModel car);
         Task<CarModel> Get(int id);
         Task<List<CarModel>> GetAll();
+        Task<List<CarModel>> GetAllByName();
+        Task<List<CarModel>> GetAllByCost();
         Task<bool> Update(CarModel car);
         Task<bool> Delete(int id);
+        Task<bool> AddCarToFavorite(CarModel car, string userId);
         Task<List<OffertsModel>> OffertsList();
         Task<bool> UpdateOffer(List<OffertsModel> offerts);
     }

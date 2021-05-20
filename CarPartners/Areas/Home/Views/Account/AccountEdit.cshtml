@@ -1,0 +1,51 @@
+﻿@model AccountEditView
+
+@{
+    ViewData["Title"] = "Edycja konta";
+    Layout = "~/Areas/Home/Views/Shared/_Layout.cshtml";
+}
+
+<section class="page-section portfolio" id="portfolio">
+    <div class="container">
+        <div class="page-inner" style="margin-top:15px;">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="d-flex align-items-center">
+                            <h4 class="card-title">Edytuj dane konta</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="login" style="background-color: white;">
+
+                                    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+                                    @using (Html.BeginForm("ForgotPassword", "Account", FormMethod.Post, new { @class = "login-form" }))
+                                    {
+                                        <div class="form-group">
+                                            <label for="name" class="placeholder"><b>Wprowadź Imię</b></label>
+                                            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="forname" class="placeholder"><b>Wprowadź Nazwisko</b></label>
+                                            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="phonenumber" class="placeholder"><b>Wprowadź Numer Telefonu</b></label>
+                                            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                                        </div>
+                                        <div class="form-group form-action-d-flex mb-3">
+                                            <button type="submit" class="btn btn-secondary col-md-5 float-left mt-3 mt-sm-0 fw-bold">Edytuj dane</button>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

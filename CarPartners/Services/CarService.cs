@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using NetCars.Areas.Home.Models.Db.Account;
 
 namespace NetCars.Services
 {
@@ -53,6 +55,22 @@ namespace NetCars.Services
                 .ToListAsync();
         }
 
+        public async Task<List<CarModel>> GetAllByName()
+        {
+            return await _context.Cars
+                .Include(i => i.CarImage)
+                .OrderBy(i => i.Name)
+                .ToListAsync();
+        }
+
+        public async Task<List<CarModel>> GetAllByCost()
+        {
+            return await _context.Cars
+                .Include(i => i.CarImage)
+                .OrderBy(i => i.Cost)
+                .ToListAsync();
+        }
+
         public async Task<bool> Update(CarModel car)
         {
             _context.Cars.Update(car);
@@ -71,6 +89,19 @@ namespace NetCars.Services
             {
                 _context.Offerts.Update(offer);
             }
+
+            return await _context.SaveChangesAsync() > 0;
+        }
+
+        public async Task<bool> AddCarToFavorite(CarModel car, string userId)
+        {
+            var favoriteModel = new CarFavoritedModel
+            {
+                UserId = userId,
+                Car = car
+            };
+
+            _context.CarFavorites.Add(favoriteModel);
 
             return await _context.SaveChangesAsync() > 0;
         }

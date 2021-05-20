@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using NetCars.Areas.Home.Models.Db.Account;
 using NetCars.Areas.Home.Models.Db.Car;
 using NetCars.Areas.Home.Models.View.Car;
 using NetCars.Infrastructure.Helpers;
@@ -17,18 +19,34 @@ namespace NetCars.Areas.Home.Controllers
     {
         private readonly ICarService _carService;
         private readonly ICloudinaryService _cloudinaryService;
+        private readonly UserManager<User> _userManager;
 
-        public CarController(ICarService carService, ICloudinaryService cloudinaryService)
+        public CarController(ICarService carService, ICloudinaryService cloudinaryService, UserManager<User> userManager)
         {
             _carService = carService;
             _cloudinaryService = cloudinaryService;
+            _userManager = userManager;
         }
 
         [HttpGet]
-        public async Task<IActionResult> List()
+        public async Task<IActionResult> List(int optionValue)
         {
             var cars = await _carService.GetAll();
-            return View(cars);
+
+
+            switch (optionValue)
+            {
+                case 1:
+                    var orderByNameCars = await _carService.GetAllByName();
+                    return View(orderByNameCars);
+                case 2:
+                    var orderByCostCars = await _carService.GetAllByCost();
+                    return View(orderByCostCars);
+                default:
+                    return View(cars);
+
+            }
+
         }
 
         [HttpGet]
@@ -37,6 +55,7 @@ namespace NetCars.Areas.Home.Controllers
             var model = await _carService.Get(Id);
             return View(CarHelpers.ConvertToView(model));
         }
+
 
         [HttpGet]
         public async Task<IActionResult> Add()
@@ -107,6 +126,14 @@ namespace NetCars.Areas.Home.Controllers
             await _carService.Create(resultModel);
             await _cloudinaryService.AddCarImage(result.CarFileImg, resultModel.Id);
 
+            return RedirectToAction("List");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddCarToFavorite(CarModel car)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            await _carService.AddCarToFavorite(car, user.Id);
             return RedirectToAction("List");
         }
 

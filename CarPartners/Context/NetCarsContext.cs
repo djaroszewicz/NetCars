@@ -18,6 +18,7 @@ namespace NetCars.Context
         public DbSet<CarModel> Cars { get; set; }
         public DbSet<OffertsModel> Offerts { get; set; }
         public DbSet<CarImageModel> CarImages { get; set; }
+        public DbSet<CarFavoritedModel> CarFavorites { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
