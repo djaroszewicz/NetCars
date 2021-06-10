@@ -18,5 +18,7 @@ namespace NetCars.Services.Interfaces
         Task<bool> AddCarToFavorite(CarModel car, string userId);
         Task<List<OffertsModel>> OffertsList();
         Task<bool> UpdateOffer(List<OffertsModel> offerts);
+
+        Task<CarModel> GetFavoriteCar();
     }
 }

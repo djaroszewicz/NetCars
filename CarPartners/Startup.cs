@@ -18,6 +18,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Authentication.Facebook;
 
 namespace NetCars
 {
@@ -52,6 +53,18 @@ namespace NetCars
                     builder.UseMySql(Configuration.GetConnectionString("DefaultConnection"), new MySqlServerVersion(new Version(8, 0, 21)));
                 });
             }
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultChallengeScheme = FacebookDefaults.AuthenticationScheme;
+                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            }).AddFacebook(facebookOptions =>
+            {
+                facebookOptions.AppId = "855139225098776";
+                facebookOptions.AppSecret = "43d6ecaf6e15548ef6017f85c143eb70";
+            })
+            .AddCookie();
 
             services.AddIdentity<User, IdentityRole>(options =>
             {

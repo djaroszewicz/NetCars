@@ -105,5 +105,14 @@ namespace NetCars.Services
 
             return await _context.SaveChangesAsync() > 0;
         }
+
+        public async Task<CarModel> GetFavoriteCar()
+        {
+            var favoriteCarId = await _context.CarFavorites.SingleOrDefaultAsync();
+
+            return await _context.Cars
+                .Include(i => i.CarImage)
+                .SingleOrDefaultAsync(a => a.Id == favoriteCarId.CarId);
+        }
     }
 }

@@ -103,7 +103,9 @@ namespace NetCars.Areas.Home.Controllers
 
             await _carService.UpdateOffer(offerts);
 
-            return View();
+            var offerCar = await _carService.GetFavoriteCar();
+
+            return View(offerCar);
         }
 
         [HttpGet]
@@ -167,6 +169,13 @@ namespace NetCars.Areas.Home.Controllers
         {
             await _carService.Delete(id);
             return RedirectToAction("List");
+        }
+
+        public async Task<IActionResult> Details()
+        {
+            var carModel = await _carService.Get(6);
+
+            return View(CarHelpers.ConvertToView(carModel));
         }
     }
 }

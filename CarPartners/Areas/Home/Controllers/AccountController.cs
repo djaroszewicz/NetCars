@@ -6,6 +6,7 @@ using NetCars.Areas.Home.Models.Db.Account;
 using NetCars.Areas.Home.Models.View.Account;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authentication;
 
 namespace NetCars.Areas.Home.Controllers
 {
@@ -15,11 +16,13 @@ namespace NetCars.Areas.Home.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        private readonly IAuthenticationSchemeProvider _authenticationSchemeProvider;
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, IAuthenticationSchemeProvider authenticationSchemeProvider)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _authenticationSchemeProvider = authenticationSchemeProvider;
         }
 
         [HttpGet]
@@ -145,6 +148,19 @@ namespace NetCars.Areas.Home.Controllers
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home", new { Area = "Home" });
+        }
+
+        //public async Task<IActionResult> FacebookLogin()
+        //{
+        //    var allSchemeProvider = (await _authenticationSchemeProvider.GetAllSchemesAsync())
+        //        .Select(n => n.DisplayName).Where(n => !String.IsNullOrEmpty(n));
+
+        //    return View(allSchemeProvider);
+        //}
+
+        public IActionResult SignIn(String provider)
+        {
+            return Challenge(new AuthenticationProperties { RedirectUri = "/" }, provider);
         }
     }
 }
