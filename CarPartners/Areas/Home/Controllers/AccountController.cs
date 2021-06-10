@@ -7,6 +7,7 @@ using NetCars.Areas.Home.Models.View.Account;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Facebook;
 
 namespace NetCars.Areas.Home.Controllers
 {
@@ -158,9 +159,19 @@ namespace NetCars.Areas.Home.Controllers
         //    return View(allSchemeProvider);
         //}
 
-        public IActionResult SignIn(String provider)
+        //public IActionResult SignIn(String provider)
+        //{
+        //    return Challenge(new AuthenticationProperties { RedirectUri = "/" }, provider);
+        //}
+
+
+        public IActionResult FacebookLogin()
         {
-            return Challenge(new AuthenticationProperties { RedirectUri = "/" }, provider);
+            var authProperties = new AuthenticationProperties
+            {
+                RedirectUri = Url.Action("Index", "Home")
+            };
+            return Challenge(authProperties, "Facebook");
         }
     }
 }

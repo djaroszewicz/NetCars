@@ -56,15 +56,19 @@ namespace NetCars
 
             services.AddAuthentication(options =>
             {
-                options.DefaultChallengeScheme = FacebookDefaults.AuthenticationScheme;
-                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                //options.DefaultChallengeScheme = FacebookDefaults.AuthenticationScheme;
+                //options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                //options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             }).AddFacebook(facebookOptions =>
             {
                 facebookOptions.AppId = "855139225098776";
                 facebookOptions.AppSecret = "43d6ecaf6e15548ef6017f85c143eb70";
             })
-            .AddCookie();
+            .AddCookie(options =>
+            {
+                options.LoginPath = "/account/facebook-login";
+            });
 
             services.AddIdentity<User, IdentityRole>(options =>
             {
